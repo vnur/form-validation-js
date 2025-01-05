@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/output.css" />
+  </head>
+  <body class="container container-fluid m-auto">
+    <h1 class="text-center text-5xl p-3 text-white bg-blue-500">
+      Validation javascript Form
+    </h1>
+    <br />
+
+    <form onsubmit="return fun(event)">
+      <div class="grid grid-cols-1">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          class="border border-black"
+          autocomplete="off"
+        />
+        <span id="userspan" class="text-orange-600"></span>
+      </div>
+      <br />
+
+      <div class="grid grid-cols-1">
+        <label for="username">Password</label>
+        <input
+          type="text"
+          id="password"
+          name="password"
+          class="border border-black"
+          autocomplete="off"
+        />
+        <span class="text-orange-600" id="passwordspan"></span>
+      </div>
+      <br />
+      <div class="grid grid-cols-1">
+        <label for="username">Confirm Password</label>
+        <input
+          type="text"
+          id="cpassword"
+          name="cpassword"
+          class="border border-black"
+          autocomplete="off"
+        />
+        <span class="text-orange-600" id="cpasswordspan"></span>
+      </div>
+      <br />
+
+      <div class="grid grid-cols-1">
+        <label for="username">email</label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          class="border border-black"
+          autocomplete="off"
+        />
+        <span class="text-orange-600" id="emailspan"></span>
+      </div>
+      <br />
+
+      <div class="grid grid-cols-1">
+        <label for="username">Phone no</label>
+        <input
+          type="text"
+          id="phone"
+          name="phone"
+          class="border border-black"
+          autocomplete="off"
+        />
+        <span class="text-orange-600" id="phonespan"></span>
+      </div>
+      <br />
+
+      <div class="text-center rounded">
+        <input type="submit" value="submit" class="bg-blue-500 p-2" />
+      </div>
+    </form>
+    <script type="text/javascript">
+      function fun(e) {
+        e.preventDefault();
+
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var cpassword = document.getElementById("cpassword").value;
+        var email = document.getElementById("email").value;
+        var phone = document.getElementById("phone").value;
+
+        var usercheck = /^[A-Za-z._ ]{3,}$/;
+        var passwordcheck =
+          /(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,16}/;
+        var emailcheck = /^[A-Za-z0-9]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z._]{3,}$/;
+        var phoenocheck = /^[789][0-9]{9}$/;
+
+        if (usercheck.test(username)) {
+          document.getElementById("userspan").innerHTML = "";
+        } else {
+          document.getElementById("userspan").innerHTML =
+            "please enter the valid username";
+          return false;
+        }
+
+        if (passwordcheck.test(password)) {
+          document.getElementById("password").innerHTML = "";
+        } else {
+          document.getElementById("passwordspan").innerHTML =
+            "please enter the valid password";
+          return false;
+        }
+
+        if (password.match(cpassword)) {
+          document.getElementById("cpassword").innerHTML = "";
+        } else {
+          document.getElementById("cpasswordspan").innerHTML =
+            "password not match";
+          return false;
+        }
+
+        if (emailcheck.test(email)) {
+          document.getElementById("email").innerHTML = "";
+        } else {
+          document.getElementById("emailspan").innerHTML =
+            "please enter the valid email";
+          return false;
+        }
+
+        if (phoenocheck.test(phone)) {
+          document.getElementById("phone").innerHTML = "";
+        } else {
+          document.getElementById("phonespan").innerHTML =
+            "please enter the valid phone no";
+          return false;
+        }
+        console.log({ username, password, cpassword, email, phone });
+      }
+    </script>
+  </body>
+</html>
